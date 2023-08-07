@@ -6,7 +6,7 @@ export class Student {
   _id: string;
 
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Column()
   firstName: string;

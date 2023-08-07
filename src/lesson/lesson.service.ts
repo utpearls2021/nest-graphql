@@ -11,13 +11,14 @@ export class LessonService {
     return await this.lessonRepository.find();
   }
   async createCourse(createLessonDto: CreateLessonDto){
-    const { name, startdate, enddate } = createLessonDto;
+    const { name, startdate, enddate, students } = createLessonDto;
     const id = (await this.getAllLesson()).length + 1;
     const lesson = this.lessonRepository.create({
       id: id.toString(),
       name: name,
       startdate: startdate,
-      enddate: enddate
+      enddate: enddate,
+      students: students
     });
 
     return this.lessonRepository.save(lesson);
@@ -25,5 +26,13 @@ export class LessonService {
 
   async getById(id: string){
     return await this.lessonRepository.findOne({ where: { id: id }});
+  }
+
+  async assignLesson(id: string, students: string[]) {
+    const lesson = await this.getById(id);
+    lesson.students = (lesson.students && lesson.students.length) ? lesson.students : [];
+    lesson.students = [...lesson.students, ...students];
+
+    return this.lessonRepository.save(lesson);
   }
 }

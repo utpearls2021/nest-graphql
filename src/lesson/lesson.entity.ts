@@ -16,4 +16,7 @@ export class LessonEntity {
 
   @Column()
   enddate: string;
+
+  @Column()
+  students: string[];
 }

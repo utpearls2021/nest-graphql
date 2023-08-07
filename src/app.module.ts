@@ -6,8 +6,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { LessonEntity } from './lesson/lesson.entity';
 import { StudentsModule } from './students/students.module';
 import { Student } from './students/student.entity';
-
-
 @Module({
   imports: [
     TypeOrmModule.forRoot({

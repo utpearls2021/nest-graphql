@@ -14,7 +14,7 @@ export class StudentReslover {
   }
 
   @Query(returns => StudentType)
-  async student(@Args("id") id: number) {
+  async student(@Args("id") id: string) {
     return await this.studentService.getById(id);
   }
 
